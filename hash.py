@@ -30,9 +30,30 @@ IN:
 RETURN:
     Updated actual_score
 """
+
+
 def update_score(id_book, books_score, used_books, actual_score):
     if not used_books[id_book]:
         return actual_score + books_score[id_book]
+
+
+"""
+IN:
+    - library: library struct to check
+    - days: days remain to end
+RETURN:
+    Maximun score
+"""
+
+
+def get_library_max_score_by_days(library_id, library_data, library_books, books_score, days):
+    real_days = days - library_data[library_id, 1]
+    books_per_day = library_data[library_id, 2]
+
+    usable_books = library_books[library_id, :real_days * books_per_day]
+    score = 0
+    for book in usable_books:
+        score = score + books_score[book]
 
 
 def main():
