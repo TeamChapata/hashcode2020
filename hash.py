@@ -21,6 +21,20 @@ def read_file(filename):
         return n_books, n_libraries, n_days, data_libraries, libraries_books, books_score
 
 
+""""
+IN:
+    - id_book: Id of last choosen book
+    - books_score: Array to save the score of each book
+    - used_books: Array to save if a book is already used or not
+    - actual_score: Actual score of the solution
+RETURN:
+    Updated actual_score
+"""
+def update_score(id_book, books_score, used_books, actual_score):
+    if not used_books[id_book]:
+        return actual_score + books_score[id_book]
+
+
 def main():
     if len(sys.argv) < 3:
         sys.exit('Syntax: %s <filename> <output>' % sys.argv[0])
